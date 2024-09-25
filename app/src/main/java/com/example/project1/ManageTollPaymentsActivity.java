@@ -78,7 +78,9 @@ public class ManageTollPaymentsActivity extends AppCompatActivity {
     // Load all toll payments from database and display in the list view
     private void loadTollPayments() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM toll_payments", null);
+
+        // Modify the query to alias 'id' as '_id' so that SimpleCursorAdapter can handle it
+        Cursor cursor = db.rawQuery("SELECT id AS _id, toll_name, vehicle_type, amount FROM toll_payments", null);
 
         String[] fromColumns = {"toll_name", "vehicle_type", "amount"};
         int[] toViews = {R.id.toll_name, R.id.vehicle_type, R.id.amount};

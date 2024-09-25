@@ -48,7 +48,7 @@ public class adminlogin extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         Toast.makeText(adminlogin.this, "Login successful", Toast.LENGTH_SHORT).show();
                         // Start a new activity or fragment after successful login
-                        Intent intent = new Intent(adminlogin.this, MainActivity.class);
+                        Intent intent = new Intent(adminlogin.this, adminActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(adminlogin.this, "Invalid username or password", Toast.LENGTH_SHORT).show();

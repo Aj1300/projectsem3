@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_toll"
+        android:title="Toll"
+        android:icon="@drawable/ic_toll_foreground" />
+    <item
+        android:id="@+id/nav_toll_history"
+        android:title="History"
+        android:icon="@drawable/ic_history_foreground" />
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_foreground" />
+</menu>

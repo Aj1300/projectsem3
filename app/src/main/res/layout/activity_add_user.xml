@@ -36,11 +36,7 @@
         android:layout_height="wrap_content"
         android:hint="Vehicle Number" />
 
-    <EditText
-        android:id="@+id/et_vehicle_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle Type" />
+
 
     <Button
         android:id="@+id/btn_add"

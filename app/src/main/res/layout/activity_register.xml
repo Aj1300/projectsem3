@@ -11,7 +11,7 @@
         android:layout_width="222dp"
         android:layout_height="193dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:importantForAccessibility="no"
         android:src="@drawable/tollgatesplash" />
 
@@ -82,16 +82,7 @@
         android:textColor="#000000"
         android:textColorHint="#000000" />
 
-    <EditText
-        android:id="@+id/et_vtype"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/vehicle_typer"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000" />
+
 
     <Button
         android:id="@+id/btn_register"

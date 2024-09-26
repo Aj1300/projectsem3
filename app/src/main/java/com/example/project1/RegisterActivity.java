@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String phone = ((EditText) findViewById(R.id.et_phone)).getText().toString();
                 String email = ((EditText) findViewById(R.id.et_email)).getText().toString();
                 String vehicleno = ((EditText) findViewById(R.id.et_vno)).getText().toString();
-                String vehicletype = ((EditText) findViewById(R.id.et_vtype)).getText().toString();
 
                 // Store user details in SQLite database
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -46,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                 values.put("phone", phone);
                 values.put("email", email);
                 values.put("vehicleno", vehicleno);
-                values.put("vehicletype", vehicletype);
+
                 long newRowId = db.insert("users", null, values);
 
                 if (newRowId != -1) {

@@ -80,9 +80,9 @@ public class ManageTollPaymentsActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // Modify the query to alias 'id' as '_id' so that SimpleCursorAdapter can handle it
-        Cursor cursor = db.rawQuery("SELECT id AS _id, toll_name, vehicle_type, amount FROM toll_payments", null);
+        Cursor cursor = db.rawQuery("SELECT id AS _id, toll_name, vehicle_type, amount, uid  FROM toll_payments", null);
 
-        String[] fromColumns = {"toll_name", "vehicle_type", "amount"};
+        String[] fromColumns = {"toll_name", "uid", "amount"};
         int[] toViews = {R.id.toll_name, R.id.vehicle_type, R.id.amount};
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(

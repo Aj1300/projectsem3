@@ -35,7 +35,7 @@ public class TollHistoryFragment extends Fragment {
         btnClearHistory = view.findViewById(R.id.btn_clear_history);
 
         // Initialize database
-        TollDatabaseHelper dbHelper = new TollDatabaseHelper(getContext());
+        TollCollectionDBHelper dbHelper = new TollCollectionDBHelper(getContext());
         database = dbHelper.getReadableDatabase();
 
         // Load toll history

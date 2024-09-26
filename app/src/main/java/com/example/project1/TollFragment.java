@@ -8,29 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TollFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TollFragment extends Fragment {
 
     private EditText etTollName;
     private RadioGroup rgVehicleType;
     private Button btnPay;
     private SQLiteDatabase database;
+    private String userno;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toll, container, false);
+
+        // Retrieve vehicle number passed from MainActivity
+        Bundle args = getArguments();
+        userno = args != null ? args.getString("USER_NO") : "Unknown user";
 
         // Initialize views
         etTollName = view.findViewById(R.id.et_toll_name);
@@ -38,7 +37,7 @@ public class TollFragment extends Fragment {
         btnPay = view.findViewById(R.id.btn_pay);
 
         // Initialize database
-        TollDatabaseHelper dbHelper = new TollDatabaseHelper(getContext());
+        TollCollectionDBHelper dbHelper = new TollCollectionDBHelper(getContext());
         database = dbHelper.getWritableDatabase();
 
         // Set up Pay button click listener
@@ -72,6 +71,7 @@ public class TollFragment extends Fragment {
             values.put("toll_name", tollName);
             values.put("vehicle_type", getVehicleTypeString(selectedVehicleId));
             values.put("amount", amount);
+            values.put("uid", userno);  // Save the vehicle number
             database.insert("toll_payments", null, values);
 
             Toast.makeText(getContext(), "Payment successful! ₹" + amount, Toast.LENGTH_SHORT).show();

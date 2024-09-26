@@ -26,22 +26,24 @@ public class TollCollectionDBHelper extends SQLiteOpenHelper {
         // Insert the default admin (username: admin, password: admin)
         insertDefaultAdmin(db);
 
-        // Other table creation queries (e.g., users, toll_payments, etc.)
+        // Create the users table
         String createUsersTable = "CREATE TABLE users (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "username TEXT NOT NULL, " +
                 "password TEXT NOT NULL, " +
                 "phone TEXT, " +
                 "email TEXT, " +
-                "vehicleno TEXT, " +
-                "vehicletype TEXT)";
+                "vehicleno TEXT UNIQUE  )";
         db.execSQL(createUsersTable);
 
+        // Create the toll_payments table with vehicleno as a foreign key
         String createTollPaymentsTable = "CREATE TABLE toll_payments (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "toll_name TEXT, " +
                 "vehicle_type TEXT, " +
-                "amount REAL)";
+                "amount REAL, " +
+                "uid TEXT, " +  // Foreign key to users table
+                "FOREIGN KEY(uid) REFERENCES users(id) ON DELETE CASCADE)";
         db.execSQL(createTollPaymentsTable);
     }
 
@@ -53,7 +55,6 @@ public class TollCollectionDBHelper extends SQLiteOpenHelper {
         long result = db.insert("admin", null, values);
 
         if (result != -1) {
-            // Log or show a Toast message if the admin is successfully inserted
             System.out.println("Default admin inserted successfully!");
         } else {
             System.out.println("Failed to insert default admin.");

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddUserActivity extends AppCompatActivity {
 
     private TollCollectionDBHelper dbHelper;
-    private EditText etUsername, etPassword, etPhone, etEmail, etVehicleNo, etVehicleType;
+    private EditText etUsername, etPassword, etPhone, etEmail, etVehicleNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class AddUserActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.et_phone);
         etEmail = findViewById(R.id.et_email);
         etVehicleNo = findViewById(R.id.et_vehicle_no);
-        etVehicleType = findViewById(R.id.et_vehicle_type);
+
         Button btnAdd = findViewById(R.id.btn_add);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,6 @@ public class AddUserActivity extends AppCompatActivity {
         String phone = etPhone.getText().toString();
         String email = etEmail.getText().toString();
         String vehicleNo = etVehicleNo.getText().toString();
-        String vehicleType = etVehicleType.getText().toString();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -52,7 +51,6 @@ public class AddUserActivity extends AppCompatActivity {
         values.put("phone", phone);
         values.put("email", email);
         values.put("vehicleno", vehicleNo);
-        values.put("vehicletype", vehicleType);
 
         db.insert("users", null, values);
         Toast.makeText(this, "User added successfully", Toast.LENGTH_SHORT).show();

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UpdateUserActivity extends AppCompatActivity {
 
     private TollCollectionDBHelper dbHelper;
-    private EditText etUsername, etPassword, etPhone, etEmail, etVehicleNo, etVehicleType;
+    private EditText etUsername, etPassword, etPhone, etEmail, etVehicleNo;
     private int userId;
 
     @Override
@@ -29,7 +29,7 @@ public class UpdateUserActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.et_phone);
         etEmail = findViewById(R.id.et_email);
         etVehicleNo = findViewById(R.id.et_vehicle_no);
-        etVehicleType = findViewById(R.id.et_vehicle_type);
+
 
         loadUserDetails(userId);
 
@@ -51,7 +51,6 @@ public class UpdateUserActivity extends AppCompatActivity {
             etPhone.setText(cursor.getString(cursor.getColumnIndex("phone")));
             etEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
             etVehicleNo.setText(cursor.getString(cursor.getColumnIndex("vehicleno")));
-            etVehicleType.setText(cursor.getString(cursor.getColumnIndex("vehicletype")));
         }
         cursor.close();
     }
@@ -62,7 +61,6 @@ public class UpdateUserActivity extends AppCompatActivity {
         String phone = etPhone.getText().toString();
         String email = etEmail.getText().toString();
         String vehicleNo = etVehicleNo.getText().toString();
-        String vehicleType = etVehicleType.getText().toString();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -71,7 +69,6 @@ public class UpdateUserActivity extends AppCompatActivity {
         values.put("phone", phone);
         values.put("email", email);
         values.put("vehicleno", vehicleNo);
-        values.put("vehicletype", vehicleType);
 
         db.update("users", values, "id = ?", new String[]{String.valueOf(userId)});
         Toast.makeText(this, "User updated successfully", Toast.LENGTH_SHORT).show();

@@ -41,10 +41,14 @@ public class LoginActivity extends AppCompatActivity {
                 Cursor cursor = db.rawQuery(query, new String[]{username, password});
 
                 if (cursor.moveToFirst()) {
+                    String uidd = cursor.getString(cursor.getColumnIndex("id"));
+
                     // User exists, generate a session ID and navigate to toll collection screen
                     String sessionId = generateSessionId();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("SESSION_ID", sessionId);
+                    intent.putExtra("USER_NO", uidd);
+
                     startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();

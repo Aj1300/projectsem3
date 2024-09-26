@@ -25,6 +25,7 @@ public class adminlogin extends AppCompatActivity {
         EditText etUsername = findViewById(R.id.et_username);
         EditText etPassword = findViewById(R.id.et_password);
         Button btnLogin = findViewById(R.id.btn_login);
+        Button btnuser = findViewById(R.id.btn_user_login);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,11 @@ public class adminlogin extends AppCompatActivity {
                 }
             }
         });
+        btnuser.setOnClickListener(view -> {
+            Intent i = new Intent(adminlogin.this, LoginActivity.class);
+            startActivity(i);
+        });
+
     }
 
     private boolean isValidAdmin(String username, String password) {
